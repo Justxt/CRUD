@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { UserController } from '../controllers/UserController';
-import { User } from '../models/User';
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { UserController } from "../controllers/UserController";
+import { User } from "../models/User";
 
 function UserDetailView() {
   const { id } = useParams<{ id: string }>();
@@ -13,14 +13,14 @@ function UserDetailView() {
   useEffect(() => {
     const fetchUser = async () => {
       if (!id) return;
-      
+
       try {
         setLoading(true);
         const userData = await UserController.getUserById(Number(id));
         setUser(userData);
         setError(null);
       } catch (err) {
-        setError('Error al cargar el usuario');
+        setError("Error al cargar el usuario");
         console.error(err);
       } finally {
         setLoading(false);
@@ -32,21 +32,25 @@ function UserDetailView() {
 
   const handleDelete = async () => {
     if (!id || !user) return;
-    
-    if (window.confirm(`¿Estás seguro de que deseas eliminar a ${user.name}?`)) {
+
+    if (
+      window.confirm(`¿Estás seguro de que deseas eliminar a ${user.name}?`)
+    ) {
       try {
         await UserController.deleteUser(Number(id));
-        navigate('/users');
+        navigate("/users");
       } catch (err) {
-        setError('Error al eliminar el usuario');
+        setError("Error al eliminar el usuario");
         console.error(err);
       }
     }
   };
 
   if (loading) return <p className="text-center py-4">Cargando</p>;
-  if (error) return <p className="text-center py-4 text-red-500">Error: {error}</p>;
-  if (!user) return <p className="text-center py-4">No se encuentra el usuario</p>;
+  if (error)
+    return <p className="text-center py-4 text-red-500">Error: {error}</p>;
+  if (!user)
+    return <p className="text-center py-4">No se encuentra el usuario</p>;
 
   return (
     <div className="max-w-2xl mx-auto">
@@ -60,7 +64,7 @@ function UserDetailView() {
             <span className="font-semibold">Email:</span> {user.email}
           </p>
           <p className="mb-4">
-            <span className="font-semibold">Creado:</span>{' '}
+            <span className="font-semibold">Creado:</span>{" "}
             {new Date(user.createdAt as Date).toLocaleDateString()}
           </p>
 
@@ -71,14 +75,14 @@ function UserDetailView() {
             >
               Editar
             </button>
-            <button 
-              onClick={() => navigate('/users')} 
+            <button
+              onClick={() => navigate("/users")}
               className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700"
             >
               Volver
             </button>
-            <button 
-              onClick={handleDelete} 
+            <button
+              onClick={handleDelete}
               className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
             >
               Eliminar

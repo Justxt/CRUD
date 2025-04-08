@@ -3,6 +3,20 @@ import { User, CreateUserDTO, UpdateUserDTO } from '../models/User';
 
 const API_URL = 'http://localhost:3000/api';
 
+// Configurar interceptor para incluir token en todas las peticiones
+axios.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 export const UserService = {
   getAll: async (): Promise<User[]> => {
     const response = await axios.get<User[]>(`${API_URL}/users`);

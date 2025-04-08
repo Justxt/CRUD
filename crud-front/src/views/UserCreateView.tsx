@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import UserForm from '../components/users/UserForm';
-import { UserController } from '../controllers/UserController';
-import { CreateUserDTO } from '../models/User';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import UserForm from "../components/users/UserForm";
+import { UserController } from "../controllers/UserController";
+import { CreateUserDTO } from "../models/User";
 
 function UserCreateView() {
   const navigate = useNavigate();
@@ -11,9 +11,9 @@ function UserCreateView() {
   const handleSubmit = async (userData: CreateUserDTO) => {
     try {
       await UserController.createUser(userData);
-      navigate('/users');
+      navigate("/users");
     } catch (err) {
-      setError('Error al crear el usuario');
+      setError("Error al crear el usuario");
       console.error(err);
     }
   };
@@ -32,8 +32,8 @@ function UserCreateView() {
           )}
           <UserForm onSubmit={handleSubmit} />
           <div className="mt-6">
-            <button 
-              onClick={() => navigate('/users')} 
+            <button
+              onClick={() => navigate("/users")}
               className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700"
             >
               Volver

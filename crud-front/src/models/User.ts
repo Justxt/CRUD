@@ -1,9 +1,9 @@
 export interface User {
-  id?: number;
+  id?: string; 
   name: string;
   email: string;
   password?: string;
-  createdAt?: string | Date;
+  created_at?: string | Date;
 }
 
 export type CreateUserDTO = {

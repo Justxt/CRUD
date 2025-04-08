@@ -1,5 +1,5 @@
-import { User } from '../../models/User';
-import { Link } from 'react-router-dom';
+import { User } from "../../models/User";
+import { Link } from "react-router-dom";
 
 interface UserListProps {
   users: User[];
@@ -12,11 +12,21 @@ function UserList({ users, onDelete }: UserListProps) {
       <table className="min-w-full bg-white divide-y divide-gray-200">
         <thead className="bg-gray-100">
           <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Creado</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              ID
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Nombre
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Email
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Creado
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Acciones
+            </th>
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
@@ -27,17 +37,19 @@ function UserList({ users, onDelete }: UserListProps) {
                 <td className="px-6 py-4 whitespace-nowrap">{user.name}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{user.email}</td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  {new Date(user.createdAt as Date).toLocaleDateString()}
+                  {user.created_at
+                    ? new Date(user.created_at).toLocaleDateString()
+                    : "N/A"}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap space-x-2">
-                  <Link 
-                    to={`/users/${user.id}`} 
+                  <Link
+                    to={`/users/${user.id}`}
                     className="inline-block px-3 py-1 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700"
                   >
                     Ver
                   </Link>
-                  <Link 
-                    to={`/users/edit/${user.id}`} 
+                  <Link
+                    to={`/users/edit/${user.id}`}
                     className="inline-block px-3 py-1 bg-amber-500 text-white text-sm rounded-md hover:bg-amber-600"
                   >
                     Editar
@@ -53,7 +65,9 @@ function UserList({ users, onDelete }: UserListProps) {
             ))
           ) : (
             <tr>
-              <td colSpan={5} className="px-6 py-4 text-center text-gray-500">No se encontraron usuarios</td>
+              <td colSpan={5} className="px-6 py-4 text-center text-gray-500">
+                No se encontraron usuarios
+              </td>
             </tr>
           )}
         </tbody>

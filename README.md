@@ -1,11 +1,11 @@
-# Aplicación CRUD Fullstack
+# Aplicación CRUD Fullstack con Autenticación
 
-Holap! CRUD (Crear, Leer, Actualizar y Eliminar) usando NestJS para el backend y React para el frontend.
+Holap! CRUD usando NestJS para el backend y React para el frontend.
 
 ## Esta organizado:
 crud/
-├── crud-back/        # Todo lo del backend (NestJS)
-└── crud-front/       # Todo lo del frontend (React)
+crud-back/        # Todo lo del backend (NestJS)
+crud-front/       # Todo lo del frontend (React)
 
 ## Backend (NestJS) - Frontend (React)
 
@@ -14,10 +14,19 @@ El fronted la parte donde se interactuara con las apis.
 
 ### ¿Que hace?
 
+- **Autenticación completa**: registro, inicio de sesión y cierre de sesión
+- Protección de rutas mediante JWT
 - Crear, leer, actualizar y eliminar usuarios (el CRUD completo)
-- Conectarse a una base de datos PostgreSQL mediante TypeORM local y en la nube
+- Conectarse a una base de datos PostgreSQL mediante TypeORM a través de 'Supabase'
 
-### Rutas
+### Rutas de Autenticación
+
+| Método | Ruta              | ¿Qué hace?                |
+|--------|-------------------|----------------------------|
+| POST   | /api/auth/login   | Inicia sesión de usuario   |
+| POST   | /api/auth/register| Registra un nuevo usuario  |
+
+### Rutas de Usuarios (Protegidas)
 
 | Método | Ruta            | ¿Qué hace?                |
 |--------|-----------------|----------------------------|
@@ -27,16 +36,20 @@ El fronted la parte donde se interactuara con las apis.
 | PUT    | /api/users/:id  | Actualiza un usuario       |
 | DELETE | /api/users/:id  | Elimina un usuario         |
 
-
 ### ¿Que tiene?
 
-- Una tabla para ver todos los usuarios
-- Un formulario para crear usuarios nuevos
-- Una vista para ver los detalles de un usuario
-- Un formulario para editar usuarios
-- Botones para eliminar usuarios
-- Navegación entre páginas con React Router
-- Diseño bonito gracias a Tailwind CSS
+- **Autenticación**:
+  - Pantalla de login para acceder al sistema
+  - Pantalla de registro para nuevos usuarios
+  - Rutas protegidas si no se encuentra logeado
+  - Gestión de sesiones con JWT
+
+- **Funcionalidades CRUD**:
+  - Una tabla para ver todos los usuarios (solo accesible para usuarios autenticados)
+  - Un formulario para crear usuarios nuevos
+  - Una vista para ver los detalles de un usuario
+  - Un formulario para editar usuarios
+  - Botones para eliminar usuarios
 
 ## Cómo instalar y ejecutar
 

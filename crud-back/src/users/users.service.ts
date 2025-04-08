@@ -12,6 +12,10 @@ export class UsersService {
     private usersRepository: Repository<User>,
   ) {}
 
+  async findByEmail(email: string): Promise<User | null> {
+    return await this.usersRepository.findOne({ where: { email } });
+  }
+
   async create(createUserDto: CreateUserDto): Promise<User> {
     const newUser = this.usersRepository.create(createUserDto);
     return await this.usersRepository.save(newUser);
@@ -31,10 +35,10 @@ export class UsersService {
 
   async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
     const user = await this.findOne(id);
-    
+
     // Actualizar propiedades
     Object.assign(user, updateUserDto);
-    
+
     return await this.usersRepository.save(user);
   }
 
