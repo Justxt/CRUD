@@ -1,10 +1,10 @@
-# Aplicación CRUD Fullstack con Autenticación
+# Aplicación CRUD con Autenticación
 
 Holap! CRUD usando NestJS para el backend y React para el frontend.
 
 ## Esta organizado:
-crud/
-crud-back/        # Todo lo del backend (NestJS)
+crud/ <br>
+crud-back/        # Todo lo del backend (NestJS) <br>
 crud-front/       # Todo lo del frontend (React)
 
 ## Backend (NestJS) - Frontend (React)
@@ -61,14 +61,16 @@ El fronted la parte donde se interactuara con las apis.
 2. Instalar dependencias:
    npm install
 
-3. Crea un archivo `.env` en la carpeta `crud-back`:
-   DATABASE_HOST=localhost
-   DATABASE_PORT=5432
-   DATABASE_USERNAME=postgres
-   DATABASE_PASSWORD=postgres
-   DATABASE_NAME=nestjs_mvc_crud
+3. Crea un archivo `.env` en la carpeta `crud-back`: <br>
+   DATABASE_HOST=tubasededatosSupabase <br>
+   DATABASE_PORT=5432 <br>
+   DATABASE_USERNAME=postgres <br>
+   DATABASE_PASSWORD=deSupabase <br>
+   DATABASE_NAME=postgres <br>
+   DATABASE_SSL=true
 
-4. Correr el back:
+
+5. Correr el back:
    npm run start:dev
 
 ### Frontend
